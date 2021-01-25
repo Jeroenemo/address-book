@@ -23,6 +23,13 @@ AddressBook.prototype.deleteContact = function(id) {
   delete this.contacts[id];
   return true;
 }
+AddressBook.prototype.updateContact = function(id, contact) {
+  if (this.contacts[id] != undefined) {
+    this.contacts[id].firstName = contact.firstName;
+    this.contacts[id].lastName = contact.lastName;
+    this.contacts[id].phoneNumber = contact.phoneNumber;
+  }
+}
 
 function Contact(firstName, lastName, phoneNumber) {
   this.firstName = firstName;
