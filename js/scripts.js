@@ -60,7 +60,7 @@ function Address(street, city, state, zip) {
 }
 
 Address.prototype.fullAddress = function() {
-  return this.street + "\n" + this.city + "," + this.state + " " + this.zip;
+  return this.street + "\n" + this.city + ", " + this.state + " " + this.zip;
 }
 
 
@@ -79,16 +79,11 @@ function displayContactDetails(addressBookToDisplay) {
 // REFACTOR HTML TO ONLY MAKE ONE DOM QUERY
 function showContact(contactId) {
   const contact = addressBook.findContact(contactId);
-  console.log(contact);
   $("#show-contact").show();
-  $(".first-name").html(contact.firstName);
-  $(".last-name").html(contact.lastName);
+  $(".name").html(contact.fullName());
   $(".phone-number").html(contact.phoneNumber);
   $(".email").html(contact.email);
-  $(".street").html(contact.address.street);
-  $(".city").html(contact.address.city);
-  $(".state").html(contact.address.state);
-  $(".zip").html(contact.address.zip);
+  $(".address").html(contact.address.fullAddress());
   let buttons = $("#buttons");
   buttons.empty();
   buttons.append("<button class='deleteButton' id=" + + contact.id + ">Delete</button>");
