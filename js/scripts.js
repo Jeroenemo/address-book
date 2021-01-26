@@ -14,7 +14,7 @@ AddressBook.prototype.assignId = function() {
 AddressBook.prototype.findContact = function(id) {
   if (this.contacts[id] != undefined) {
     return this.contacts[id];
-  }
+  };
   return false;
 };
 AddressBook.prototype.deleteContact = function(id) {
@@ -62,7 +62,7 @@ function showContact(contactId) {
   let buttons = $("#buttons");
   buttons.empty();
   buttons.append("<button class='deleteButton' id=" + + contact.id + ">Delete</button>")
-}
+};
 function attachContactListeners() {
   $("ul#contacts").on("click", "li", function() {
     showContact(this.id);
