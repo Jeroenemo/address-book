@@ -3,11 +3,6 @@ function AddressBook() {
   this.contacts = {};
   this.currentId = 0;
 };
-
-Address.prototype.addAddress = function(address){
-  
-}
-
 AddressBook.prototype.addContact = function(contact) {
   contact.id = this.assignId();
   this.contacts[contact.id] = contact;
@@ -37,8 +32,6 @@ AddressBook.prototype.updateContact = function(id, contact) {
     this.contacts[id].email = contact.email;
   };
 };
-
-
 // Business Logic for Contacts ---------
 function Contact(firstName, lastName, phoneNumber, email, address) {
   this.firstName = firstName;
@@ -46,24 +39,20 @@ function Contact(firstName, lastName, phoneNumber, email, address) {
   this.phoneNumber = phoneNumber;
   this.email = email;
   this.address = address;
-
+  
 };
 Contact.prototype.fullName = function() {
   return this.firstName + " " + this.lastName;
 };
-
 function Address(street, city, state, zip) {
   this.street = street;
   this.city = city;
   this.state = state;
   this.zip = zip;
-}
-
+};
 Address.prototype.fullAddress = function() {
   return this.street + "\n" + this.city + ", " + this.state + " " + this.zip;
-}
-
-
+};
 // User Interface Logic ---------
 let addressBook = new AddressBook();
 
