@@ -52,6 +52,7 @@ function displayContactDetails(addressBookToDisplay) {
   });
   contactsList.html(htmlForContactInfo);
 };
+// REFACTOR HTML TO ONLY MAKE ONE DOM QUERY
 function showContact(contactId) {
   const contact = addressBook.findContact(contactId);
   $("#show-contact").show();
@@ -60,11 +61,16 @@ function showContact(contactId) {
   $(".phone-number").html(contact.phoneNumber);
   let buttons = $("#buttons");
   buttons.empty();
-  buttons.append("<button class='deleteButton' id=" + + contact.id + ">Delete</button">)
+  buttons.append("<button class='deleteButton' id=" + + contact.id + ">Delete</button>")
 }
 function attachContactListeners() {
   $("ul#contacts").on("click", "li", function() {
     showContact(this.id);
+  });
+  $("#buttons").on("click", ".deleteButton", function () {
+    addressBook.deleteContact(this.id);
+    $("#show-contact").hide();
+    displayContactDetails(addressBook);
   });
 };
 $(document).ready(function() {
