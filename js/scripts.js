@@ -41,11 +41,16 @@ function Contact(firstName, lastName, phoneNumber, email, workEmail, address, wo
   this.workEmail = workEmail;
   this.address = address;
   this.workAddress = workAddress;
-  
+
 };
 Contact.prototype.fullName = function() {
   return this.firstName + " " + this.lastName;
 };
+
+// ($(this).val().length === 0)
+
+
+
 // function Address(street, city, state, zip) {
 //   this.street = street;
 //   this.city = city;
@@ -72,22 +77,30 @@ function displayContactDetails(addressBookToDisplay) {
 function showContact(contactId) {
   const contact = addressBook.findContact(contactId);
   $("#show-contact").show();
+  if (contact.workAddress === "") {
+    $("#work-address").hide();
+  } else {
+    $(".work-address").html(contact.workAddress);
+  }
+  if (contact.phoneNumber === "") {
+    $("#phone-number").hide();
+  }
   $(".name").html(contact.fullName());
   $(".phone-number").html(contact.phoneNumber);
   $(".email").html(contact.email);
   $(".work-email").html(contact.workEmail);
   $(".address").html(contact.address);
-  $(".work-address").html(contact.workAddress);
-
+  
   let buttons = $("#buttons");
   buttons.empty();
-  buttons.append("<button class='deleteButton' id=" + + contact.id + ">Delete</button>");
+  buttons.append("<button class='deleteButton' id=" + +contact.id + ">Delete</button>");
 };
+
 function attachContactListeners() {
   $("ul#contacts").on("click", "li", function() {
     showContact(this.id);
   });
-  $("#buttons").on("click", ".deleteButton", function () {
+  $("#buttons").on("click", ".deleteButton", function() {
     addressBook.deleteContact(this.id);
     $("#show-contact").hide();
     displayContactDetails(addressBook);
