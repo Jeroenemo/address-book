@@ -81,21 +81,36 @@ function showContact(contactId) {
     $("#work-address").hide();
   } else {
     $(".work-address").html(contact.workAddress);
-  }
+  };
   if (contact.phoneNumber === "") {
     $("#phone-number").hide();
-  }
-  $(".name").html(contact.fullName());
-  $(".phone-number").html(contact.phoneNumber);
-  $(".email").html(contact.email);
-  $(".work-email").html(contact.workEmail);
-  $(".address").html(contact.address);
-  
+  } else {
+    $(".phone-number").html(contact.phoneNumber);
+  };
+  if (contact.email === "") {
+    $("#email").hide();
+  } else {
+    $(".email").html(contact.email);
+  };
+  if (contact.workEmail === "") {
+    $("#work-email").hide();
+  } else {
+    $(".work-email").html(contact.workEmail);
+  };
+  if (contact.address === "") {
+    $("#address").hide();
+  } else {
+    $(".address").html(contact.address);
+  };
+  if (contact.fullName() === " ") {
+    $("#name").hide();
+  } else {
+    $(".name").html(contact.fullName());
+  };
   let buttons = $("#buttons");
   buttons.empty();
   buttons.append("<button class='deleteButton' id=" + +contact.id + ">Delete</button>");
 };
-
 function attachContactListeners() {
   $("ul#contacts").on("click", "li", function() {
     showContact(this.id);
